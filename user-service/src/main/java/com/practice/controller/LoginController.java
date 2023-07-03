@@ -45,7 +45,7 @@ public class LoginController {
     public CommonResult register(@RequestBody User user) {
         boolean save = userService.save(user);
         if (save)
-            return CommonResult.success("登录成功");
+            return CommonResult.success("注册成功");
         else
             return CommonResult.validateFailed();
     }
