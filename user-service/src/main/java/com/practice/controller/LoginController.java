@@ -7,21 +7,24 @@ import com.practice.entity.User;
 import com.practice.mapper.UserMapper;
 import com.practice.service.impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Author G
  * @Date 2023/7/1 22:55
  * @PackageName:com.practice.controller
  * @ClassName: LoginController
- * @Description: TODO
+ * @Description: TODO mysql 未实现
  * @Version 1.0
  */
 @RestController
 @Slf4j
 public class LoginController {
-    @Autowired
+    @Resource
     private UserServiceImpl userService;
 
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
@@ -33,6 +36,15 @@ public class LoginController {
 
         log.info(user.toString());
         if (user.getUsername().equals(userlogin.getUsername()) && user.getPassword().equals(userlogin.getPassword()))
+            return CommonResult.success("登录成功");
+        else
+            return CommonResult.validateFailed();
+    }
+    @RequestMapping(value = "/user/register", method = RequestMethod.POST)
+    @CrossOrigin
+    public CommonResult register(@RequestBody User user) {
+        boolean save = userService.save(user);
+        if (save)
             return CommonResult.success("登录成功");
         else
             return CommonResult.validateFailed();
