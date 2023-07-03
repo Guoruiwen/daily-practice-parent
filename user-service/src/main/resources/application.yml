@@ -1,0 +1,7 @@
+# DataSource Config
+spring:
+  datasource:
+    username: root
+    password: QQ@154780
+    url: jdbc:mysql://139.9.128.24:3306/daily-practice-sql?userUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
